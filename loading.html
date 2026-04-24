@@ -164,6 +164,19 @@
   <script src="keys.js?v=3"></script>
   <script src="auth.js?v=3"></script>
 
+  <!-- Block direct URL access — must be opened via launchCloaked() token -->
+  <script>
+    (function() {
+      const token = sessionStorage.getItem('sgCloakToken');
+      if (!token || !isUnlocked()) {
+        sessionStorage.clear();
+        location.replace('index.html');
+      }
+      // Token is one-time use — remove it so reloads also redirect to gate
+      sessionStorage.removeItem('sgCloakToken');
+    })();
+  </script>
+
   <!-- Concurrent session detection for sold pro keys -->
   <script type="module">
     import { startSession } from "./session.js";
@@ -209,14 +222,7 @@
       { name:"Stickman GTA City",       emoji:"🏙️",  cat:"action",   tier:"pro",  src:"games/stickman-gta-city/index.html" },
       { name:"Stickman Destruction",    emoji:"💀", cat:"action",   tier:"pro",  src:"games/stickman-destruction/index.html" },
       { name:"Monster Survivors",       emoji:"👾", cat:"action",   tier:"pro",  src:"games/monster-survivors/index.html" },
-      { name:"FNAF 1",                  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf/index.html",           series:"FNAF" },
-      { name:"FNAF 2",                  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf2/index.html",          series:"FNAF" },
-      { name:"FNAF 3",                  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf3/index.html",          series:"FNAF" },
-      { name:"FNAF 4",                  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf4/index.html",          series:"FNAF" },
-      { name:"FNAF: Sister Location",   emoji:"🎪", cat:"action",   tier:"pro",  src:"games/sister-location/index.html", series:"FNAF" },
-      { name:"Pizzeria Simulator",      emoji:"🍕", cat:"action",   tier:"pro",  src:"games/pizzeria-sim/index.html",   series:"FNAF" },
-      { name:"Ultimate Custom Night",   emoji:"🌙", cat:"action",   tier:"pro",  src:"games/ucn/index.html",            series:"FNAF" },
-      { name:"FNAP",                    emoji:"😨", cat:"action",   tier:"free", src:"games/five-nights-at-poppy/index.html", series:"FNAF" },
+      { name:"Five Nights at Freddy's",  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf/index.html" },
 
       // ── Shooting ────────────────────────────────────────────────────────────
       { name:"FPS Strike",              emoji:"🎯", cat:"shooting", tier:"free", src:"games/fps-strike/index.html" },
@@ -365,8 +371,6 @@
       { name:"The Deepest Sword",      emoji:"⚔️",  cat:"action",   tier:"pro",  src:"games/the-deepest-sword/index.html" },
       { name:"Use Boxmen",             emoji:"📦", cat:"action",   tier:"pro",  src:"games/use-boxmen/index.html" },
       { name:"There Is No Game",       emoji:"🚫", cat:"action",   tier:"pro",  src:"games/there-is-no-game/index.html" },
-      { name:"Burrito Bison",          emoji:"🌯", cat:"action",   tier:"free", src:"games/burrito-bison/index.html" },
-
       // Strategy
       { name:"Bloons TD",              emoji:"🎈", cat:"strategy", tier:"free", src:"games/bloons-td/index.html",   series:"Bloons TD" },
       { name:"Bloons TD 2",            emoji:"🎈", cat:"strategy", tier:"free", src:"games/bloons-td-2/index.html", series:"Bloons TD" },

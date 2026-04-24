@@ -636,7 +636,10 @@
       <div class="modal-top">🏮</div>
       <h2>Staff Login / 员工登录</h2>
       <div class="modal-cn">老王茶叶店 · Internal Access</div>
-      <input type="password" id="authInput" placeholder="Enter access code" autocomplete="new-password" spellcheck="false" name="tea-code">
+      <!-- type=text + CSS masking = looks like password but browser won't offer to save it -->
+      <input type="text" id="authInput" placeholder="Enter access code"
+        autocomplete="off" spellcheck="false" name="tea-code"
+        style="-webkit-text-security:disc;text-security:disc;">
       <button id="authBtn">LOGIN 登录</button>
       <div id="authError"></div>
     </div>
@@ -706,8 +709,11 @@
         .then(html => {
           const keyHash = sessionStorage.getItem('sgUnlockedSession');
           const tier    = sessionStorage.getItem('sgUnlockedTier');
+          // One-time token — loading.html checks for this so direct URL access is blocked
+          const token   = Math.random().toString(36).slice(2) + Date.now().toString(36);
           w.sessionStorage.setItem('sgUnlockedSession', keyHash);
           w.sessionStorage.setItem('sgUnlockedTier',    tier);
+          w.sessionStorage.setItem('sgCloakToken',      token);
           const base = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/');
           html = html.replace('<head>', `<head><base href="${base}">`);
           w.document.open();

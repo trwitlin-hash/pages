@@ -2,11 +2,20 @@
 .claude/
 *.log
 deploy.env
-# Large game binaries — too big for GitHub (100MB limit)
+# Large game binaries — too big for GitHub (100MB per-file limit)
 *.unx
 *.pck
-*.wasm
 games/fnaf/resources.zip
 games/people-playground/Build/PPG.data
 games/people-playground/Build/PPG 2.data
 games/deltarune/
+# macOS duplicate files (Finder adds " 2" suffix to copies)
+* 2.wasm
+* 2.unx
+* 2.pck
+*_2.wasm
+games/burrito-bison/
+games/thats-not-my-neighbor/
+games/kindergarten-3/Build 2/
+js/ruffle 2/
+games/polytrack/lib/draco 2/

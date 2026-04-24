@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <title>Fruit Ninja</title>
   <style>
-    html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
-    iframe { width: 100%; height: 100%; border: none; display: block; }
+    @font-face {
+      font-family: gangofchinese;
+      src: url('assets/font/gangofchinese.ttf');
+    }
+    body {
+      background-color: #000000;
+      margin: 0;
+      height: 100%;
+      max-height: 100vh !important;
+      overflow: hidden;
+      position: relative;
+    }
+    #phaser-canvas {
+      margin: 0 auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
-  <iframe src="https://mountain658.github.io/g/fruitninja/fruitninja.html" allowfullscreen allow="fullscreen *; gamepad *"></iframe>
+  <script type="text/javascript" src="vendors.fb6f2f7c51aa86f87ee3.bundle.js"></script>
+  <script type="text/javascript" src="main.bb79cf245c33f6bf6733.bundle.js"></script>
 </body>
 </html>
