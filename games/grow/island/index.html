@@ -1,49 +1,11 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <script src="/js/load.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
-    </style>
+  <meta charset="UTF-8">
+  <style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#000}ruffle-player{width:100%;height:100%;display:block}</style>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 </head>
 <body>
-<script src="/js/ruffle/ruffle.js"></script>
-<script>
-    window.RufflePlayer = window.RufflePlayer || {};
-
-    function applyScale(player) {
-        var nw = player.offsetWidth;
-        var nh = player.offsetHeight;
-        if (!nw || !nh) return;
-        var vw = window.innerWidth;
-        var vh = window.innerHeight;
-        var s  = Math.min(vw / nw, vh / nh);
-        var ox = (vw - nw * s) / 2;
-        var oy = (vh - nh * s) / 2;
-        player.style.position        = 'absolute';
-        player.style.transformOrigin = '0 0';
-        player.style.transform       = 'scale(' + s + ')';
-        player.style.left            = ox + 'px';
-        player.style.top             = oy + 'px';
-    }
-
-    function startRuffle() {
-        if (!window.RufflePlayer.newest || !window.RufflePlayer.newest()) {
-            return setTimeout(startRuffle, 50);
-        }
-        var player = window.RufflePlayer.newest().createPlayer();
-        document.body.appendChild(player);
-        player.load({ url: "Build/growisland.swf", allowScriptAccess: "never" });
-
-        // Wait for Ruffle to set its natural dimensions, then scale to fill
-        setTimeout(function() {
-            applyScale(player);
-            window.addEventListener('resize', function() { applyScale(player); });
-        }, 300);
-    }
-    startRuffle();
-</script>
+  <ruffle-player src="Build/growisland.swf" width="100%" height="100%"></ruffle-player>
 </body>
 </html>
