@@ -456,6 +456,10 @@
           const tier    = sessionStorage.getItem('sgUnlockedTier');
           w.sessionStorage.setItem('sgUnlockedSession', keyHash);
           w.sessionStorage.setItem('sgUnlockedTier',    tier);
+          // Inject base tag so all relative paths (CSS, JS, images) resolve correctly
+          // even though the window URL is about:blank
+          const base = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/');
+          html = html.replace('<head>', `<head><base href="${base}">`);
           w.document.open();
           w.document.write(html);
           w.document.close();
