@@ -1,0 +1,15 @@
+{
+  "files": [
+    "GameAnalytics.js",
+    "Jump_Game.js",
+    "MonkeyMart.wasm",
+    "MonkeyMart_wasm.js",
+    "back-home.png",
+    "bg_loading.png",
+    "dmloader.js",
+    "index.html",
+    "load_bar_bg.png",
+    "load_bar_fg.png",
+    "resources.zip"
+  ]
+}

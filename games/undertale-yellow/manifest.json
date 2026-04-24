@@ -1,0 +1,10 @@
+{
+  "files": [
+    "game.unx",
+    "index.html",
+    "index.js",
+    "runner.data",
+    "runner.js",
+    "runner.wasm"
+  ]
+}

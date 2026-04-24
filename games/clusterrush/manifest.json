@@ -1,0 +1,15 @@
+{
+  "files": [
+    "Release/NG.asm.js",
+    "Release/NG.data",
+    "Release/NG.js",
+    "Release/NG.mem",
+    "Release/UnityLoader.js",
+    "TemplateData/UnityProgress.js",
+    "TemplateData/fullbar.png",
+    "TemplateData/loadingbar.png",
+    "TemplateData/logo.png",
+    "TemplateData/style.css",
+    "index.html"
+  ]
+}

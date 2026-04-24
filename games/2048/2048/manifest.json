@@ -1,0 +1,33 @@
+{
+  "files": [
+    "favicon.ico",
+    "index.html",
+    "js/animframe_polyfill.js",
+    "js/application.js",
+    "js/bind_polyfill.js",
+    "js/classlist_polyfill.js",
+    "js/game_manager.js",
+    "js/grid.js",
+    "js/html_actuator.js",
+    "js/keyboard_input_manager.js",
+    "js/local_storage_manager.js",
+    "js/tile.js",
+    "meta/apple-touch-icon.png",
+    "meta/apple-touch-startup-image-640x1096.png",
+    "meta/apple-touch-startup-image-640x920.png",
+    "style/fonts/ClearSans-Bold-webfont.eot",
+    "style/fonts/ClearSans-Bold-webfont.svg",
+    "style/fonts/ClearSans-Bold-webfont.woff",
+    "style/fonts/ClearSans-Bold-webfontd41d.eot",
+    "style/fonts/ClearSans-Light-webfont.eot",
+    "style/fonts/ClearSans-Light-webfont.svg",
+    "style/fonts/ClearSans-Light-webfont.woff",
+    "style/fonts/ClearSans-Light-webfontd41d.eot",
+    "style/fonts/ClearSans-Regular-webfont.eot",
+    "style/fonts/ClearSans-Regular-webfont.svg",
+    "style/fonts/ClearSans-Regular-webfont.woff",
+    "style/fonts/ClearSans-Regular-webfontd41d.eot",
+    "style/fonts/clear-sans.css",
+    "style/main.css"
+  ]
+}

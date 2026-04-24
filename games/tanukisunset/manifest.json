@@ -1,0 +1,13 @@
+{
+  "files": [
+    "css/style.css",
+    "img/cover.png",
+    "img/logo.png",
+    "index.html",
+    "js/UnityLoader.js",
+    "tanuki.json",
+    "unity/tanuki.data.unityweb",
+    "unity/tanuki.wasm.code.unityweb",
+    "unity/tanuki.wasm.framework.unityweb"
+  ]
+}

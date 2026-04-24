@@ -1,0 +1,20 @@
+{
+  "files": [
+    "commercial.js",
+    "html5game_a5/circloo2.js",
+    "html5game_a5/circloo2_texture_0.png",
+    "html5game_a5/loadingcircloo2_2.png",
+    "html5game_a5/snd_levelfinished.ogg",
+    "html5game_a5/snd_levelgrow.ogg",
+    "html5game_a5/snd_menu_back.ogg",
+    "html5game_a5/snd_menu_choose.ogg",
+    "html5game_a5/snd_music.ogg",
+    "html5game_a5/tph_html5fixes3.js",
+    "html5game_a5/uph_quickTextRender.js",
+    "html5game_a5/vph_HTML5Link.js",
+    "html5game_a5/xph_poki.js",
+    "index.html",
+    "patch/js/poki-sdk.js",
+    "rewarded.js"
+  ]
+}

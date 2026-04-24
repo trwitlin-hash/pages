@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script src="/js/load.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vex 2</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #ruffle {
+        width: 100vh; /* Set width based on height to fill vertically */
+        max-width: 100vw; /* Don't go past screen width */
+        position: relative;
+      }
+
+      #ruffle::before {
+        content: '';
+        display: block;
+        padding-bottom: 100%; /* Forces a 1:1 aspect ratio */
+      }
+
+      #player {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ruffle" width="100%" height="100%"></div>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+      window.RufflePlayer = window.RufflePlayer || {};
+      window.addEventListener('load', (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        const container = document.getElementById('ruffle');
+        player.id = 'player';
+        player.style.width = '100%';
+        player.style.height = '100%';
+        container.appendChild(player);
+        player.load('vex2.swf');
+      });
+    </script>
+  </body>
+</html>

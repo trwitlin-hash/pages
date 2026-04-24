@@ -1,0 +1,18 @@
+{
+  "files": [
+    "Build/rooftop-snipers.asm.code.unityweb",
+    "Build/rooftop-snipers.asm.framework.unityweb",
+    "Build/rooftop-snipers.asm.memory.unityweb",
+    "Build/rooftop-snipers.data.unityweb",
+    "Build/rooftop-snipers.json",
+    "TemplateData/UnityLoader.js",
+    "TemplateData/UnityProgress.js",
+    "TemplateData/progressEmpty.Dark.png",
+    "TemplateData/progressFull.Dark.png",
+    "TemplateData/progressLogo.Dark.png",
+    "TemplateData/style.css",
+    "img/preview.png",
+    "img/thumb.png",
+    "index.html"
+  ]
+}

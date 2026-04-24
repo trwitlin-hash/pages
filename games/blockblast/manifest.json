@@ -1,0 +1,20 @@
+{
+  "files": [
+    "Build/BlockBlast1.1-8.data.unityweb",
+    "Build/BlockBlast1.1-8.framework.js.unityweb",
+    "Build/BlockBlast1.1-8.loader.js",
+    "Build/BlockBlast1.1-8.wasm.unityweb",
+    "ServiceWorker.js",
+    "TemplateData/icons/unity-logo-dark.png",
+    "TemplateData/icons/unity-logo-light.png",
+    "TemplateData/progress-bar-empty-dark.png",
+    "TemplateData/progress-bar-empty-light.png",
+    "TemplateData/progress-bar-full-dark.png",
+    "TemplateData/progress-bar-full-light.png",
+    "TemplateData/style.css",
+    "TemplateData/unity-logo-dark.png",
+    "TemplateData/unity-logo-light.png",
+    "index.html",
+    "manifest.webmanifest"
+  ]
+}

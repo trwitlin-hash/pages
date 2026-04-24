@@ -1,0 +1,12 @@
+.DS_Store
+.claude/
+*.log
+deploy.env
+# Large game binaries — too big for GitHub (100MB limit)
+*.unx
+*.pck
+*.wasm
+games/fnaf/resources.zip
+games/people-playground/Build/PPG.data
+games/people-playground/Build/PPG 2.data
+games/deltarune/

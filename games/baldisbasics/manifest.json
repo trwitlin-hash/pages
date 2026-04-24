@@ -1,0 +1,14 @@
+{
+  "files": [
+    "TemplateData/UnityProgress.js",
+    "TemplateData/progressEmpty.Dark.png",
+    "TemplateData/progressFull.Dark.png",
+    "TemplateData/progressLogo.Dark.png",
+    "TemplateData/style.css",
+    "baldi.js",
+    "baldi.json",
+    "firebase-app.js",
+    "index.html",
+    "splash.png"
+  ]
+}

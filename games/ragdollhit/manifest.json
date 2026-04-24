@@ -1,0 +1,17 @@
+{
+  "files": [
+    ".DS_Store",
+    "Build/1aedb70085073113e2b55ca86f37e2e8.wasm.unityweb",
+    "Build/3338c1fab0254118d94e7278963be9f4.data.unityweb",
+    "Build/ae7e3b4bdec4176bd62c24dfc2799d25.framework.js.unityweb",
+    "Build/d9d605cb1c18b4ed9fb179406f02ceab.loader.js",
+    "UnityLoader.2019.1.js",
+    "UnityLoader.2019.2.js",
+    "UnityLoader.js",
+    "index.html",
+    "master-loader.js",
+    "poki-sdk.js",
+    "poki-sdk2.js",
+    "unity-2020.js"
+  ]
+}

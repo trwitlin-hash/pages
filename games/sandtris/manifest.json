@@ -1,0 +1,12 @@
+{
+  "files": [
+    "favicon.png",
+    "fonts/retroFont.ttf",
+    "index.html",
+    "sketch.js",
+    "sounds/line.mp3",
+    "sounds/music.mp3",
+    "sounds/place.mp3",
+    "style.css"
+  ]
+}

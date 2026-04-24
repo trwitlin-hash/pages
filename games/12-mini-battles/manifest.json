@@ -1,0 +1,10 @@
+{
+  "files": [
+    "12.js",
+    "index.html",
+    "sdk.js",
+    "tph_hidebar.js",
+    "vph_loadingBars.js",
+    "wph_gmCallback.js"
+  ]
+}

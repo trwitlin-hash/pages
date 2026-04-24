@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script src="/js/load.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Duck Life 1</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #ruffle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 72.5%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ruffle" width="100%" height="100%"></div>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+      window.RufflePlayer = window.RufflePlayer || {};
+      window.addEventListener('load', (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        const container = document.getElementById('ruffle');
+        player.id = 'player';
+        player.style.width = '100%';
+        player.style.height = '100%';
+        container.appendChild(player);
+        player.load('ducklife2.swf');
+      });
+    </script>
+  </body>
+</html>

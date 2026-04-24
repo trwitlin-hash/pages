@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Classroom</title>
+  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+</head>
+<body>
+
+  <!-- Top bar -->
+  <nav class="topbar">
+    <span class="topbar-logo">🎮 Games</span>
+    <input type="text" class="search-bar" id="searchBar" placeholder="Search games..." autocomplete="off">
+    <button class="btn-reports" id="reportsBtn" style="display:none">📋 Reports</button>
+    <button class="btn-changelog" id="changelogBtn">📰 Changelog</button>
+    <button class="btn-lock" id="lockBtn">🔒 Lock</button>
+  </nav>
+
+  <!-- Reports panel (master only) -->
+  <div class="reports-overlay" id="reportsOverlay" style="display:none">
+    <div class="reports-panel">
+      <div class="reports-header">
+        <span>📋 Broken Game Reports</span>
+        <button class="btn-close" id="reportsCloseBtn">✕ Close</button>
+      </div>
+      <div id="reportsList"></div>
+      <button class="btn-clear-reports" id="clearReportsBtn">🗑 Clear All</button>
+    </div>
+  </div>
+
+  <!-- Changelog panel -->
+  <div class="reports-overlay" id="changelogOverlay" style="display:none">
+    <div class="reports-panel" style="max-width:540px;max-height:80vh;overflow-y:auto">
+      <div class="reports-header">
+        <span>📰 Changelog</span>
+        <button class="btn-close" id="changelogCloseBtn">✕ Close</button>
+      </div>
+      <div class="changelog-body">
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-new">🆕 New</div>
+          <p>Full <strong>FNAF series</strong> added — FNAF 1, 2, 3, 4, Sister Location, Pizzeria Simulator, and Ultimate Custom Night. All running on proper HTML5 Clickteam ports.</p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-new">🆕 New</div>
+          <p>New games added: <strong>Fruit Ninja, Procrastination Clicker, Spacebar Clicker, Slope 2, Cubefield, Launchball, Bloons TD 1–4, Bloxorz, Tomb of the Mask, ElectroMan, Celeste, The Deepest Sword, There Is No Game, Burrito Bison, Use Boxmen, Super Mario 64.</strong></p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-removed">❌ Removed</div>
+          <p>Spring cleaning — removed games that were broken, too large, or had dead CDNs: <strong>Deltarune, Hollow Knight, Buckshot Roulette, That's Not My Neighbor, They Are Coming, Stick With It, GBA Emulator</strong> and several others that couldn't be fixed.</p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-fix">🔧 Fix</div>
+          <p>Fixed several games: <strong>Celeste</strong> now auto-focuses keyboard and shows controls on load. <strong>Geometry Dash</strong> spacebar now jumps correctly. <strong>Grow series</strong> now fills the screen properly.</p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-new">🆕 New</div>
+          <p>Huge batch of classics added: <strong>Bloons TD 1–2 &amp; 4, Bloxorz, Celeste, Tomb of the Mask, Super Mario 64, Burrito Bison, Use Boxmen, ElectroMan, The Deepest Sword, There Is No Game, FNAF 3 &amp; 4.</strong></p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-new">🆕 New</div>
+          <p>Big update! A ton of new games were added across every category:</p>
+          <ul>
+            <li>Crazy Cattle 3D, Velocity Rush, Block Blast, Geometry Dash, Paper.io 2, Tunnel Rush, OvO</li>
+            <li>Stickman GTA City, Stickman Destruction, Monster Survivors, Bad Monday, Binding of Isaac, ULTRAKILL, Pizza Tower, Kindergarten 3, They Are Coming, Ragdoll Hit, Stick With It</li>
+            <li>Granny, Baldi's Basics</li>
+            <li>Undertale, Undertale Yellow, Undertale Anniversary</li>
+            <li>FNAF 1, Five Nights at Poppy</li>
+            <li>Vex 1–6, World's Hardest Game 1–4, CircloO 1 &amp; 2, Duck Life 1–5</li>
+            <li>Drive Mad, Jelly Drift, Poly Track, Tanuki Sunset</li>
+            <li>Space Waves, Subway Surfers, Stickman Hook, Level Devil, Escape Road 2, Snow Battle, Swingo</li>
+            <li>BitLife, Papers Please, People Playground</li>
+            <li>Idle Breakout, Idle Restaurants, Plinko Clicker, To the Core</li>
+            <li>Bad Piggies, The Impossible Quiz, Troll Level Master</li>
+            <li>1v1.LOL, Crossy Road, Core Ball, Stack, Tag, Retro Ping Pong</li>
+          </ul>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-new">🆕 New</div>
+          <p>Re-added games that were previously removed + new additions: <strong>Temple of Boom, Escape Road 2, Cluster Rush, Drift Hunters, Drift Boss, Grand Prix, Space Jaunt, 12 Mini Battles, Alien Addition, Integer Warp, Sandtris, Grow 2–7 series.</strong></p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-removed">❌ Removed</div>
+          <p><strong>Five Nights at Epstein's</strong> — Sadly removed out of respect for the creator. We want to make sure their work is protected and they're comfortable with how it's shared.</p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-feature">✨ Feature</div>
+          <p>Added series filters so you can browse full game series like Fireboy &amp; Watergirl, Duck Life, Vex, Deltarune, and more all in one place.</p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-feature">✨ Feature</div>
+          <p>Added a panic key — press <kbd>`</kbd> (the backtick key, top-left of keyboard) at any time, even while in a game, to instantly switch to Google Classroom.</p>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-date">April 2026</div>
+          <div class="cl-tag cl-tag-new">🆕 New</div>
+          <p>The site now opens disguised as Google Classroom in a separate tab, so the address bar shows the right thing.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Category filters -->
+  <div class="filter-row" id="filterRow">
+    <button class="filter-btn active" data-cat="all">All</button>
+    <button class="filter-btn" data-cat="arcade">Arcade</button>
+    <button class="filter-btn" data-cat="action">Action</button>
+    <button class="filter-btn" data-cat="driving">Driving</button>
+    <button class="filter-btn" data-cat="shooting">Shooting</button>
+    <button class="filter-btn" data-cat="sports">Sports</button>
+    <button class="filter-btn" data-cat="puzzle">Puzzle</button>
+    <button class="filter-btn" data-cat="strategy">Strategy</button>
+    <button class="filter-btn" data-cat="sandbox">Sandbox</button>
+    <button class="filter-btn" data-cat="idle">Idle</button>
+  </div>
+
+  <!-- Series filters (auto-populated) -->
+  <div class="filter-row" id="seriesRow" style="display:none">
+    <button class="filter-btn series-btn active" data-series="all">All Series</button>
+  </div>
+
+  <!-- Game grid -->
+  <div class="games-grid" id="gamesGrid"></div>
+
+  <!-- Game modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle"></span>
+      <button class="btn-fullscreen" id="fsBtn">⛶ Fullscreen</button>
+      <button class="btn-report" id="reportBtn">🚩 Report</button>
+      <button class="btn-close" id="closeBtn">✕ Close</button>
+    </div>
+    <div class="modal-frame-wrap" id="frameWrap">
+      <iframe id="game-iframe"
+        allow="fullscreen *; gamepad *;">
+      </iframe>
+    </div>
+  </div>
+
+  <script src="keys.js?v=3"></script>
+  <script src="auth.js?v=3"></script>
+
+  <!-- Concurrent session detection for sold pro keys -->
+  <script type="module">
+    import { startSession } from "./session.js";
+    const keyHash = sessionStorage.getItem("sgUnlockedSession");
+    if (keyHash && typeof KEYS !== "undefined" && KEYS[keyHash] && KEYS[keyHash].sold === true) {
+      startSession(keyHash);
+    }
+  </script>
+
+  <script>
+    // Auth guard — kick back to gate if not unlocked
+    if (!isUnlocked()) location.href = "index.html";
+    const userTier = getTier(); // "free" or "pro"
+
+    // ─── Game catalog ──────────────────────────────────────────────────────────
+    // tier "free" = shown to all users
+    // tier "pro"  = shown to pro users only
+
+    const GAMES = [
+
+      // ── Arcade / Platformer ──────────────────────────────────────────────────
+      { name:"Slope",                   emoji:"🎿", cat:"arcade",   tier:"free", src:"games/slope/index.html" },
+      { name:"2048",                    emoji:"🔢", cat:"arcade",   tier:"free", src:"games/2048/index.html" },
+      { name:"Moto X3M",                emoji:"🏍️",  cat:"arcade",   tier:"free", src:"games/motox3m/index.html" },
+      { name:"Flappy Bird",             emoji:"🐦", cat:"arcade",   tier:"free", src:"games/flappybird/index.html" },
+      { name:"Chrome Dino",             emoji:"🦕", cat:"arcade",   tier:"free", src:"games/chromedino/index.html" },
+      { name:"Snake",                   emoji:"🐍", cat:"arcade",   tier:"free", src:"games/snake/index.html" },
+      { name:"Pacman",                  emoji:"🟡", cat:"arcade",   tier:"free", src:"games/pacman/index.html" },
+      { name:"Tetris",                  emoji:"🟦", cat:"arcade",   tier:"free", src:"games/tetris/index.html" },
+      { name:"Run 3",                   emoji:"🏃", cat:"arcade",   tier:"free", src:"games/run3/index.html" },
+      { name:"OvO",                     emoji:"⬛", cat:"arcade",   tier:"pro",  src:"games/ovo/index.html" },
+      { name:"Tunnel Rush",             emoji:"🌀", cat:"arcade",   tier:"pro",  src:"games/tunnel-rush/index.html" },
+      { name:"Geometry Dash",           emoji:"🔷", cat:"arcade",   tier:"pro",  src:"games/geometrydash/index.html" },
+      { name:"Paper.io 2",              emoji:"📄", cat:"arcade",   tier:"pro",  src:"games/paperio/index.html" },
+      { name:"Block Blast",             emoji:"🧱", cat:"arcade",   tier:"pro",  src:"games/blockblast/index.html" },
+      { name:"Crazy Cattle 3D",         emoji:"🐄", cat:"arcade",   tier:"pro",  src:"games/crazy-cattle-3d/index.html" },
+      { name:"Velocity Rush",           emoji:"⚡", cat:"arcade",   tier:"pro",  src:"games/velocity-rush/index.html" },
+
+      // ── Action ──────────────────────────────────────────────────────────────
+      { name:"Rooftop Snipers",         emoji:"🎯", cat:"action",   tier:"free", src:"games/rooftop-snipers/index.html" },
+      { name:"Ragdoll Archers",         emoji:"🏹", cat:"action",   tier:"free", src:"games/ragdollarchers/index.html" },
+      { name:"Retro Bowl",              emoji:"🏈", cat:"action",   tier:"pro",  src:"games/retro-bowl/index.html" },
+      { name:"Stickman GTA City",       emoji:"🏙️",  cat:"action",   tier:"pro",  src:"games/stickman-gta-city/index.html" },
+      { name:"Stickman Destruction",    emoji:"💀", cat:"action",   tier:"pro",  src:"games/stickman-destruction/index.html" },
+      { name:"Monster Survivors",       emoji:"👾", cat:"action",   tier:"pro",  src:"games/monster-survivors/index.html" },
+      { name:"FNAF 1",                  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf/index.html",           series:"FNAF" },
+      { name:"FNAF 2",                  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf2/index.html",          series:"FNAF" },
+      { name:"FNAF 3",                  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf3/index.html",          series:"FNAF" },
+      { name:"FNAF 4",                  emoji:"🐻", cat:"action",   tier:"pro",  src:"games/fnaf4/index.html",          series:"FNAF" },
+      { name:"FNAF: Sister Location",   emoji:"🎪", cat:"action",   tier:"pro",  src:"games/sister-location/index.html", series:"FNAF" },
+      { name:"Pizzeria Simulator",      emoji:"🍕", cat:"action",   tier:"pro",  src:"games/pizzeria-sim/index.html",   series:"FNAF" },
+      { name:"Ultimate Custom Night",   emoji:"🌙", cat:"action",   tier:"pro",  src:"games/ucn/index.html",            series:"FNAF" },
+      { name:"FNAP",                    emoji:"😨", cat:"action",   tier:"free", src:"games/five-nights-at-poppy/index.html", series:"FNAF" },
+
+      // ── Shooting ────────────────────────────────────────────────────────────
+      { name:"FPS Strike",              emoji:"🎯", cat:"shooting", tier:"free", src:"games/fps-strike/index.html" },
+      { name:"WarStrike",               emoji:"⚔️",  cat:"shooting", tier:"pro",  src:"games/warstrike/index.html" },
+      { name:"Guerrillas.io",           emoji:"💂", cat:"shooting", tier:"pro",  src:"games/guerrillas-io/index.html" },
+
+      // ── Driving ─────────────────────────────────────────────────────────────
+      { name:"Madalin Stunt Cars Pro",  emoji:"🏎️",  cat:"driving",  tier:"pro",  src:"games/madalin-stunt-cars-pro/index.html" },
+      { name:"Burnout City",            emoji:"🔥", cat:"driving",  tier:"pro",  src:"games/burnout-city/index.html" },
+      { name:"Super Car Driving",       emoji:"🚗", cat:"driving",  tier:"pro",  src:"games/super-car-driving/index.html" },
+      { name:"Highway Racer Pro",       emoji:"🛣️",  cat:"driving",  tier:"pro",  src:"games/highway-racer-pro/index.html" },
+      { name:"Stunt Rider",             emoji:"🏍️",  cat:"driving",  tier:"pro",  src:"games/stunt-rider/index.html" },
+      { name:"Drift King",              emoji:"🏁", cat:"driving",  tier:"pro",  src:"games/drift-king/index.html" },
+      { name:"Crazy Drifter",           emoji:"💨", cat:"driving",  tier:"pro",  src:"games/crazy-drifter/index.html" },
+
+      // ── Sports ──────────────────────────────────────────────────────────────
+      { name:"Basket Random",           emoji:"🏀", cat:"sports",   tier:"free", src:"games/basketrandom/index.html" },
+      { name:"Soccer Random",           emoji:"⚽", cat:"sports",   tier:"free", src:"games/soccerrandom/index.html" },
+      { name:"Boxing Random",           emoji:"🥊", cat:"sports",   tier:"free", src:"games/boxingrandom/index.html" },
+
+      // ── Puzzle ──────────────────────────────────────────────────────────────
+      { name:"Tiny Fishing",            emoji:"🎣", cat:"puzzle",   tier:"free", src:"games/tinyfishing/index.html" },
+      { name:"Troll Level Master",      emoji:"😈", cat:"puzzle",   tier:"pro",  src:"games/troll-level-master/index.html" },
+
+      // ── Sandbox ─────────────────────────────────────────────────────────────
+      { name:"Fireboy & Watergirl",     emoji:"🔥", cat:"sandbox",  tier:"free", src:"games/fireboywatergirl/1/index.html", series:"Fireboy & Watergirl" },
+      { name:"Fireboy & Watergirl 2",   emoji:"💡", cat:"sandbox",  tier:"free", src:"games/fireboywatergirl/2/index.html", series:"Fireboy & Watergirl" },
+      { name:"Fireboy & Watergirl 3",   emoji:"❄️",  cat:"sandbox",  tier:"free", src:"games/fireboywatergirl/3/index.html", series:"Fireboy & Watergirl" },
+      { name:"Fireboy & Watergirl 4",   emoji:"💎", cat:"sandbox",  tier:"free", src:"games/fireboywatergirl/4/index.html", series:"Fireboy & Watergirl" },
+      { name:"Fireboy & Watergirl 5",   emoji:"🌿", cat:"sandbox",  tier:"pro",  src:"games/fireboywatergirl/5/index.html", series:"Fireboy & Watergirl" },
+      { name:"Minecraft",               emoji:"⛏️",  cat:"sandbox",  tier:"pro",  src:"games/minecraft/index.html" },
+      { name:"Cube Worlds",             emoji:"🌍", cat:"sandbox",  tier:"pro",  src:"games/cube-worlds/index.html" },
+      { name:"CubeCraft Survival",      emoji:"🏕️",  cat:"sandbox",  tier:"pro",  src:"games/cubecraft-survival/index.html" },
+
+      // ── Idle ────────────────────────────────────────────────────────────────
+      { name:"Monkey Mart",             emoji:"🐒", cat:"idle",     tier:"free", src:"games/monkeymart/index.html" },
+      { name:"Cookie Clicker",          emoji:"🍪", cat:"idle",     tier:"free", src:"games/cookieclicker/index.html" },
+      { name:"Cookie Clicker Pro",      emoji:"🍪", cat:"idle",     tier:"free", src:"games/cookie-clicker-pro/index.html" },
+      { name:"Checkout Frenzy",         emoji:"🛒", cat:"idle",     tier:"pro",  src:"games/checkout-frenzy/index.html" },
+      { name:"Idle Dev Startup",        emoji:"💻", cat:"idle",     tier:"pro",  src:"games/idle-dev-startup/index.html" },
+
+      // ── Strategy ────────────────────────────────────────────────────────────
+      { name:"Balatro",                 emoji:"🃏", cat:"strategy", tier:"pro",  src:"games/balatro/index.html" },
+      { name:"Survival Island",         emoji:"🏝️",  cat:"strategy", tier:"pro",  src:"games/survival-island/index.html" },
+
+      // ── Self-hosted (sems collection) ────────────────────────────────────────
+
+      // Arcade
+      { name:"1v1.LOL",                emoji:"🎯", cat:"arcade",   tier:"pro",  src:"games/1v1/index.html" },
+      { name:"CircloO",                emoji:"⭕", cat:"puzzle",   tier:"pro",  src:"games/circloo/1/index.html", series:"CircloO" },
+      { name:"CircloO 2",              emoji:"⭕", cat:"puzzle",   tier:"pro",  src:"games/circloo/2/index.html", series:"CircloO" },
+      { name:"Core Ball",              emoji:"⚾", cat:"arcade",   tier:"free", src:"games/coreball/index.html" },
+      { name:"Crossy Road",            emoji:"🐔", cat:"arcade",   tier:"free", src:"games/crossyroad/index.html" },
+      { name:"Duck Life",              emoji:"🦆", cat:"arcade",   tier:"free", src:"games/ducklife/1/index.html", series:"Duck Life" },
+      { name:"Duck Life 2",            emoji:"🦆", cat:"arcade",   tier:"free", src:"games/ducklife/2/index.html", series:"Duck Life" },
+      { name:"Duck Life 3",            emoji:"🦆", cat:"arcade",   tier:"free", src:"games/ducklife/3/index.html", series:"Duck Life" },
+      { name:"Duck Life 4",            emoji:"🦆", cat:"arcade",   tier:"pro",  src:"games/ducklife/4/index.html", series:"Duck Life" },
+      { name:"Duck Life 5",            emoji:"🦆", cat:"arcade",   tier:"pro",  src:"games/ducklife/5/index.html", series:"Duck Life" },
+      { name:"Level Devil",            emoji:"😈", cat:"arcade",   tier:"pro",  src:"games/level-devil/index.html" },
+      { name:"Retro Ping Pong",        emoji:"🏓", cat:"arcade",   tier:"free", src:"games/retropingpong/index.html" },
+      { name:"Snow Battle",            emoji:"❄️",  cat:"arcade",   tier:"free", src:"games/snow-battle/index.html" },
+      { name:"Space Waves",            emoji:"🌊", cat:"arcade",   tier:"pro",  src:"games/space-waves/index.html" },
+      { name:"Stack",                  emoji:"🏗️",  cat:"arcade",   tier:"free", src:"games/stack/index.html" },
+      { name:"Stickman Hook",          emoji:"🕷️",  cat:"arcade",   tier:"pro",  src:"games/stickman-hook/index.html" },
+      { name:"Subway Surfers",         emoji:"🏃", cat:"arcade",   tier:"pro",  src:"games/subwaysurfers/index.html" },
+      { name:"Swingo",                 emoji:"🪀", cat:"arcade",   tier:"pro",  src:"games/swingo/index.html" },
+      { name:"Tag",                    emoji:"🏷️",  cat:"arcade",   tier:"free", src:"games/tag/index.html" },
+      { name:"World's Hardest Game",   emoji:"🟥", cat:"arcade",   tier:"pro",  src:"games/worlds-hardest-game/1/index.html", series:"World's Hardest Game" },
+      { name:"World's Hardest Game 2", emoji:"🟥", cat:"arcade",   tier:"pro",  src:"games/worlds-hardest-game/2/index.html", series:"World's Hardest Game" },
+      { name:"World's Hardest Game 3", emoji:"🟥", cat:"arcade",   tier:"pro",  src:"games/worlds-hardest-game/3/index.html", series:"World's Hardest Game" },
+      { name:"World's Hardest Game 4", emoji:"🟥", cat:"arcade",   tier:"pro",  src:"games/worlds-hardest-game/4/index.html", series:"World's Hardest Game" },
+      { name:"Cluster Rush",           emoji:"🚛", cat:"arcade",   tier:"free", src:"games/clusterrush/index.html" },
+      { name:"Escape Road 2",          emoji:"🚓", cat:"arcade",   tier:"free", src:"games/escaperoad-2/index.html" },
+      { name:"Space Jaunt",            emoji:"🚀", cat:"arcade",   tier:"free", src:"games/space-jaunt/index.html" },
+      { name:"12 Mini Battles",        emoji:"⚔️",  cat:"arcade",   tier:"free", src:"games/12-mini-battles/index.html" },
+
+      // Action
+      { name:"Bad Monday",             emoji:"😤", cat:"action",   tier:"pro",  src:"games/bad-monday/index.html" },
+      { name:"Baldi's Basics",         emoji:"🎒", cat:"action",   tier:"pro",  src:"games/baldisbasics/index.html" },
+      { name:"Binding of Isaac",       emoji:"😢", cat:"action",   tier:"pro",  src:"games/binding-of-isaac/index.html" },
+      { name:"Granny",                 emoji:"👵", cat:"action",   tier:"pro",  src:"games/granny/index.html" },
+      { name:"Kindergarten 3",         emoji:"✏️",  cat:"action",   tier:"pro",  src:"games/kindergarten-3/index.html" },
+      { name:"Pizza Tower",            emoji:"🍕", cat:"action",   tier:"pro",  src:"games/pizza-tower/index.html" },
+      { name:"Ragdoll Hit",            emoji:"🤸", cat:"action",   tier:"pro",  src:"games/ragdollhit/index.html" },
+      { name:"ULTRAKILL",              emoji:"💀", cat:"action",   tier:"pro",  src:"games/ultrakill/index.html" },
+      { name:"Undertale",              emoji:"❤️",  cat:"action",   tier:"pro",  src:"games/undertale/index.html", series:"Undertale" },
+      { name:"Undertale Yellow",       emoji:"💛", cat:"action",   tier:"pro",  src:"games/undertale-yellow/index.html", series:"Undertale" },
+      { name:"Undertale Anniversary",  emoji:"🎂", cat:"action",   tier:"pro",  src:"games/undertale-ut10/index.html", series:"Undertale" },
+      { name:"Vex",                    emoji:"🏃", cat:"action",   tier:"pro",  src:"games/vex/1/index.html", series:"Vex" },
+      { name:"Vex 2",                  emoji:"🏃", cat:"action",   tier:"pro",  src:"games/vex/2/index.html", series:"Vex" },
+      { name:"Vex 3",                  emoji:"🏃", cat:"action",   tier:"pro",  src:"games/vex/3/index.html", series:"Vex" },
+      { name:"Vex 4",                  emoji:"🏃", cat:"action",   tier:"pro",  src:"games/vex/4/index.html", series:"Vex" },
+      { name:"Vex 5",                  emoji:"🏃", cat:"action",   tier:"pro",  src:"games/vex/5/index.html", series:"Vex" },
+      { name:"Vex 6",                  emoji:"🏃", cat:"action",   tier:"pro",  src:"games/vex/6/index.html", series:"Vex" },
+      { name:"Temple of Boom",         emoji:"💣", cat:"action",   tier:"pro",  src:"games/templeofboom/index.html" },
+
+      // Driving
+      { name:"Drive Mad",              emoji:"🚙", cat:"driving",  tier:"free", src:"games/drivemad/index.html" },
+      { name:"Jelly Drift",            emoji:"🟢", cat:"driving",  tier:"pro",  src:"games/jelly-drift/index.html" },
+      { name:"Poly Track",             emoji:"🏎️",  cat:"driving",  tier:"pro",  src:"games/polytrack/index.html" },
+      { name:"Tanuki Sunset",          emoji:"🦝", cat:"driving",  tier:"pro",  src:"games/tanukisunset/index.html" },
+      { name:"Drift Hunters",          emoji:"🏎️",  cat:"driving",  tier:"free", src:"games/drift-hunters/index.html" },
+      { name:"Drift Boss",             emoji:"🚗", cat:"driving",  tier:"free", src:"games/driftboss/index.html" },
+      { name:"Grand Prix",             emoji:"🏁", cat:"driving",  tier:"free", src:"games/grand-prix/index.html" },
+
+      // Sports
+      { name:"Retro Bowl College",     emoji:"🏈", cat:"sports",   tier:"pro",  src:"games/retrobowlcollege/index.html" },
+      { name:"Volley Random",          emoji:"🏐", cat:"sports",   tier:"free", src:"games/volleyrandom/index.html" },
+
+      // Puzzle
+      { name:"Bad Piggies",            emoji:"🐷", cat:"puzzle",   tier:"free", src:"games/bad-piggies/index.html" },
+      { name:"The Impossible Quiz",    emoji:"❓", cat:"puzzle",   tier:"pro",  src:"games/the-impossible-quiz/index.html" },
+{ name:"Sandtris",               emoji:"⏳", cat:"puzzle",   tier:"free", src:"games/sandtris/index.html" },
+      { name:"Grow 2",                 emoji:"🌱", cat:"puzzle",   tier:"free", src:"games/grow/2/index.html",      series:"Grow" },
+      { name:"Grow 3",                 emoji:"🌱", cat:"puzzle",   tier:"free", src:"games/grow/3/index.html",      series:"Grow" },
+      { name:"Grow Cube",              emoji:"📦", cat:"puzzle",   tier:"free", src:"games/grow/cube/index.html",   series:"Grow" },
+      { name:"Grow Island",            emoji:"🏝️",  cat:"puzzle",   tier:"free", src:"games/grow/island/index.html", series:"Grow" },
+      { name:"Grow Park",              emoji:"🌳", cat:"puzzle",   tier:"free", src:"games/grow/park/index.html",   series:"Grow" },
+      { name:"Grow RPG",               emoji:"⚔️",  cat:"puzzle",   tier:"free", src:"games/grow/rpg/index.html",   series:"Grow" },
+      { name:"Grow Tower",             emoji:"🏰", cat:"puzzle",   tier:"free", src:"games/grow/tower/index.html",  series:"Grow" },
+
+      // Sandbox
+      { name:"BitLife",                emoji:"📱", cat:"sandbox",  tier:"pro",  src:"games/bitlife/index.html" },
+      { name:"Papers Please",          emoji:"📋", cat:"sandbox",  tier:"pro",  src:"games/papers-please/index.html" },
+      { name:"People Playground",      emoji:"🧍", cat:"sandbox",  tier:"pro",  src:"games/people-playground/index.html" },
+
+      // Idle
+      { name:"Procrastination Clicker",emoji:"⏰", cat:"idle",     tier:"free", src:"games/procrastination-clicker/index.html" },
+      { name:"Spacebar Clicker",       emoji:"⌨️",  cat:"idle",     tier:"free", src:"games/spacebar-clicker/index.html" },
+      { name:"Idle Breakout",          emoji:"🧱", cat:"idle",     tier:"free", src:"games/idlebreakout/index.html" },
+      { name:"Idle Restaurants",       emoji:"🍽️",  cat:"idle",     tier:"pro",  src:"games/idlerestaurants/index.html" },
+      { name:"Plinko Clicker",         emoji:"🎯", cat:"idle",     tier:"pro",  src:"games/plinko-clicker/index.html" },
+      { name:"To the Core",            emoji:"⛏️",  cat:"idle",     tier:"pro",  src:"games/to-the-core/index.html" },
+
+      // ── mountain658 collection ───────────────────────────────────────────────
+
+      // Arcade / Platformer
+      { name:"Fruit Ninja",            emoji:"🍉", cat:"arcade",   tier:"free", src:"games/fruit-ninja/index.html" },
+      { name:"Slope 2",               emoji:"🎿", cat:"arcade",   tier:"pro",  src:"games/slope-2/index.html" },
+      { name:"Cubefield",             emoji:"🟦", cat:"arcade",   tier:"free", src:"games/cubefield/index.html" },
+      { name:"Tomb of the Mask",       emoji:"💀", cat:"arcade",   tier:"pro",  src:"games/tomb-of-the-mask/index.html" },
+      { name:"ElectroMan",             emoji:"⚡", cat:"arcade",   tier:"pro",  src:"games/electroman/index.html" },
+      { name:"Celeste",                emoji:"❄️",  cat:"arcade",   tier:"pro",  src:"games/celeste/index.html" },
+
+      // Action / Fighting
+      { name:"The Deepest Sword",      emoji:"⚔️",  cat:"action",   tier:"pro",  src:"games/the-deepest-sword/index.html" },
+      { name:"Use Boxmen",             emoji:"📦", cat:"action",   tier:"pro",  src:"games/use-boxmen/index.html" },
+      { name:"There Is No Game",       emoji:"🚫", cat:"action",   tier:"pro",  src:"games/there-is-no-game/index.html" },
+      { name:"Burrito Bison",          emoji:"🌯", cat:"action",   tier:"free", src:"games/burrito-bison/index.html" },
+
+      // Strategy
+      { name:"Bloons TD",              emoji:"🎈", cat:"strategy", tier:"free", src:"games/bloons-td/index.html",   series:"Bloons TD" },
+      { name:"Bloons TD 2",            emoji:"🎈", cat:"strategy", tier:"free", src:"games/bloons-td-2/index.html", series:"Bloons TD" },
+      { name:"Bloons TD 4",            emoji:"🎈", cat:"strategy", tier:"pro",  src:"games/bloons-td-4/index.html", series:"Bloons TD" },
+      { name:"Super Mario 64",         emoji:"⭐", cat:"sandbox",  tier:"pro",  src:"games/super-mario-64/index.html" },
+
+      // Puzzle
+      { name:"Launchball",            emoji:"⚽", cat:"puzzle",   tier:"free", src:"games/launchball/index.html" },
+      { name:"Bloxorz",                emoji:"🟫", cat:"puzzle",   tier:"free", src:"games/bloxorz/index.html" },
+
+      // Sports
+
+    ];
+
+    // ─── Render ───────────────────────────────────────────────────────────────
+    let currentCat    = "all";
+    let currentSeries = "all";
+    let currentSearch = "";
+    const grid = document.getElementById("gamesGrid");
+
+    // Show tier badge in topbar
+    const badge = document.createElement("span");
+    badge.className = "tier-badge tier-" + userTier;
+    badge.textContent = userTier === "pro" ? "⭐ Pro" : "Free";
+    document.querySelector(".topbar-logo").after(badge);
+
+    // Build series filter row from visible games
+    function buildSeriesRow() {
+      const seriesRow = document.getElementById("seriesRow");
+      const visibleGames = GAMES.filter(g => userTier === "pro" || g.tier === "free");
+      const seriesSet = new Set(visibleGames.filter(g => g.series).map(g => g.series));
+      if (!seriesSet.size) { seriesRow.style.display = "none"; return; }
+      seriesRow.style.display = "";
+      // Clear and rebuild
+      seriesRow.innerHTML = `<button class="filter-btn series-btn active" data-series="all">All Series</button>`;
+      [...seriesSet].sort().forEach(s => {
+        const btn = document.createElement("button");
+        btn.className = "filter-btn series-btn";
+        btn.dataset.series = s;
+        btn.textContent = s;
+        seriesRow.appendChild(btn);
+      });
+    }
+
+    function render() {
+      const q = currentSearch.toLowerCase();
+      const filtered = GAMES.filter(g =>
+        (userTier === "pro" || g.tier === "free") &&
+        (currentCat === "all" || g.cat === currentCat) &&
+        (currentSeries === "all" || g.series === currentSeries) &&
+        g.name.toLowerCase().includes(q)
+      );
+      grid.innerHTML = "";
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="no-results">No games found 😔</div>`;
+        return;
+      }
+      filtered.forEach(g => {
+        const card = document.createElement("div");
+        card.className = "game-card";
+        card.innerHTML = `
+          <div class="game-thumb">${g.emoji}</div>
+          <div class="game-info">
+            <div class="game-name">${g.name}</div>
+            <div class="game-tag">${g.cat}${g.series ? ' · ' + g.series : ''}</div>
+          </div>`;
+        card.addEventListener("click", () => openGame(g));
+        grid.appendChild(card);
+      });
+    }
+
+    // ─── Filters & search ─────────────────────────────────────────────────────
+    document.getElementById("filterRow").addEventListener("click", e => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      document.querySelectorAll("#filterRow .filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentCat = btn.dataset.cat;
+      render();
+    });
+
+    document.getElementById("seriesRow").addEventListener("click", e => {
+      const btn = e.target.closest(".series-btn");
+      if (!btn) return;
+      document.querySelectorAll("#seriesRow .series-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentSeries = btn.dataset.series;
+      // If a specific series is chosen, reset the category filter to "all"
+      if (currentSeries !== "all") {
+        currentCat = "all";
+        document.querySelectorAll("#filterRow .filter-btn").forEach(b => b.classList.remove("active"));
+        document.querySelector("#filterRow .filter-btn[data-cat='all']").classList.add("active");
+      }
+      render();
+    });
+
+    document.getElementById("searchBar").addEventListener("input", e => {
+      currentSearch = e.target.value;
+      render();
+    });
+
+    // ─── Lock ─────────────────────────────────────────────────────────────────
+    document.getElementById("lockBtn").addEventListener("click", () => {
+      lock();
+      if (window.opener) window.close();
+      else location.href = "index.html";
+    });
+
+    // ─── Game modal ───────────────────────────────────────────────────────────
+    const modal      = document.getElementById("modal");
+    const iframe     = document.getElementById("game-iframe");
+    const modalTitle = document.getElementById("modalTitle");
+
+    let currentGame = null;
+    const reportBtn = document.getElementById("reportBtn");
+
+    // Inject panic key into iframe once it loads (games steal keyboard focus)
+    iframe.addEventListener("load", () => {
+      try {
+        iframe.contentWindow.addEventListener("keydown", e => {
+          if (e.key === "`") window.location.replace("https://classroom.google.com");
+        });
+      } catch(e) {} // silently skip cross-origin games
+    });
+
+    function openGame(g) {
+      currentGame = g;
+      modalTitle.textContent = g.emoji + " " + g.name;
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      iframe.src = g.src;
+      // Reset report button
+      reportBtn.textContent = "🚩 Report";
+      reportBtn.classList.remove("reported");
+    }
+
+    reportBtn.addEventListener("click", () => {
+      if (!currentGame || reportBtn.classList.contains("reported")) return;
+      const reports = JSON.parse(localStorage.getItem("brokenReports") || "[]");
+      reports.push({ name: currentGame.name, src: currentGame.src, time: new Date().toISOString() });
+      localStorage.setItem("brokenReports", JSON.stringify(reports));
+      reportBtn.textContent = "✓ Reported";
+      reportBtn.classList.add("reported");
+    });
+
+    function closeGame() {
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+      iframe.src = "about:blank";
+    }
+
+    document.getElementById("closeBtn").addEventListener("click", closeGame);
+    modal.addEventListener("click", e => { if (e.target === modal) closeGame(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeGame(); if (e.key === "`") location.replace("https://classroom.google.com"); });
+
+    document.getElementById("fsBtn").addEventListener("click", () => {
+      const el = document.getElementById("frameWrap");
+      if (el.requestFullscreen) el.requestFullscreen();
+      else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    });
+
+    // ─── Reports panel (master only) ─────────────────────────────────────────
+    if (isMaster()) {
+      const reportsBtn = document.getElementById("reportsBtn");
+      reportsBtn.style.display = "";
+
+      reportsBtn.addEventListener("click", () => {
+        const reports = JSON.parse(localStorage.getItem("brokenReports") || "[]");
+        const list = document.getElementById("reportsList");
+        if (!reports.length) {
+          list.innerHTML = `<p class="reports-empty">No reports yet.</p>`;
+        } else {
+          list.innerHTML = reports.map((r, i) =>
+            `<div class="report-item">
+              <span class="report-num">#${i + 1}</span>
+              <div class="report-info">
+                <strong>${r.name}</strong>
+                <span class="report-url">${r.src}</span>
+                <span class="report-time">${new Date(r.time).toLocaleString()}</span>
+              </div>
+            </div>`
+          ).join("");
+        }
+        document.getElementById("reportsOverlay").style.display = "flex";
+      });
+
+      document.getElementById("reportsCloseBtn").addEventListener("click", () => {
+        document.getElementById("reportsOverlay").style.display = "none";
+      });
+
+      document.getElementById("clearReportsBtn").addEventListener("click", () => {
+        localStorage.removeItem("brokenReports");
+        document.getElementById("reportsList").innerHTML = `<p class="reports-empty">No reports yet.</p>`;
+      });
+    }
+
+    // ─── Init ─────────────────────────────────────────────────────────────────
+    // Reset title to Google Classroom whenever user switches away (panic cover)
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) document.title = "Google Classroom";
+    });
+
+    // ─── Changelog panel ──────────────────────────────────────────────────────
+    document.getElementById("changelogBtn").addEventListener("click", () => {
+      document.getElementById("changelogOverlay").style.display = "flex";
+    });
+    document.getElementById("changelogCloseBtn").addEventListener("click", () => {
+      document.getElementById("changelogOverlay").style.display = "none";
+    });
+    document.getElementById("changelogOverlay").addEventListener("click", e => {
+      if (e.target === document.getElementById("changelogOverlay"))
+        document.getElementById("changelogOverlay").style.display = "none";
+    });
+
+    buildSeriesRow();
+    render();
+  </script>
+  <style>
+    .changelog-body { padding: 12px 20px 20px; }
+    .cl-entry { margin-bottom: 22px; }
+    .cl-date { font-size: 11px; color: #80868b; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+    .cl-tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 12px; margin-bottom: 8px; }
+    .cl-tag-new      { background: #e6f4ea; color: #137333; }
+    .cl-tag-removed  { background: #fce8e6; color: #c5221f; }
+    .cl-tag-feature  { background: #e8f0fe; color: #1a73e8; }
+    .cl-tag-fix      { background: #fef7e0; color: #b45309; }
+    .changelog-body p { font-size: 13px; color: #3c4043; line-height: 1.6; margin-bottom: 6px; }
+    .changelog-body ul { font-size: 13px; color: #3c4043; line-height: 1.8; padding-left: 20px; }
+    .changelog-body kbd {
+      background: #f1f3f4; border: 1px solid #dadce0; border-radius: 4px;
+      padding: 1px 5px; font-size: 12px; font-family: monospace;
+    }
+  </style>
+</body>
+</html>

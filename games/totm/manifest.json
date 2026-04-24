@@ -1,0 +1,15 @@
+{
+  "files": [
+    "UnityProgress.js",
+    "d5fuh3d/UnityLoader.js",
+    "d5fuh3d/totm.data.unityweb",
+    "d5fuh3d/totm.json",
+    "d5fuh3d/totm.wasm.code.unityweb",
+    "d5fuh3d/totm.wasm.framework.unityweb",
+    "index.html",
+    "progressEmpty.Dark.png",
+    "progressFull.Dark.png",
+    "progressLogo.Dark.png",
+    "style.css"
+  ]
+}

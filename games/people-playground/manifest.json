@@ -1,0 +1,10 @@
+{
+  "files": [
+    "Build/PPG.data",
+    "Build/PPG.framework.js",
+    "Build/PPG.loader.js",
+    "Build/PPG.wasm",
+    "TemplateData/style.css",
+    "index.html"
+  ]
+}

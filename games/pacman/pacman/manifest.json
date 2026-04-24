@@ -1,0 +1,14 @@
+{
+  "files": [
+    "bundle.js",
+    "favicon.png",
+    "fonts/press-start-2p-v9-latin-regular.woff",
+    "fonts/press-start-2p-v9-latin-regular.woff2",
+    "img/characters.png",
+    "img/maze.png",
+    "img/misc.png",
+    "img/pills.png",
+    "img/start.png",
+    "index.html"
+  ]
+}

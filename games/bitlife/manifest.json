@@ -1,0 +1,11 @@
+{
+  "files": [
+    "Build/BitLife.json",
+    "Build/UnityLoader.js",
+    "TemplateData/UnityProgress.js",
+    "TemplateData/progressEmpty.Dark.png",
+    "TemplateData/progressFull.Dark.png",
+    "index.html",
+    "logo.png"
+  ]
+}

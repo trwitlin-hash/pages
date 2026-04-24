@@ -1,0 +1,33 @@
+{
+  "files": [
+    "TempleBoom_CustomPreloader_ForColin.js",
+    "assets/music/sound-623.mp3",
+    "assets/sfx/sound-620.mp3",
+    "assets/sfx/sound-621.mp3",
+    "assets/sfx/sound-622.mp3",
+    "assets/sfx/sound-624.mp3",
+    "assets/sfx/sound-626.mp3",
+    "assets/sfx/sound-637.mp3",
+    "assets/sfx/sound-648.mp3",
+    "assets/sfx/sound-649.mp3",
+    "assets/sfx/sound-650.mp3",
+    "assets/sfx/sound-651.mp3",
+    "assets/sfx/sound-652.mp3",
+    "assets/sfx/sound-653.mp3",
+    "assets/sfx/sound-654.mp3",
+    "assets/sfx/sound-655.mp3",
+    "assets/sfx/sound-656.mp3",
+    "assets/sfx/sound-657.mp3",
+    "assets/sfx/sound-661.mp3",
+    "assets/sfx/sound-672.mp3",
+    "assets/sfx/sound-706.mp3",
+    "assets/sfx/sound-709.mp3",
+    "assets/sfx/sound-801.mp3",
+    "fonts/torus-bold-webfont.woff",
+    "fonts/torus-bold-webfont.woff2",
+    "index.html",
+    "lib/default.pak",
+    "patch/poki-sdk-core-v2.263.0.js",
+    "patch/poki-sdk.js"
+  ]
+}

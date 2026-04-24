@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Moto X3M</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <link rel="stylesheet" href="assets/css/app.css" type="text/css" />
+    <link rel="shortcut icon" href="splash.jpg" />
+    <link rel="icon" href="splash.jpg" />
+  </head>
+  <body>
+    <div id="content"></div>
+    <div id="orientation"></div>
+    <div id="loader">Loading ...</div>
+    <script type="text/javascript">
+      // IMA SDK stub — prevents crash when ad SDK is blocked
+      window.google = window.google || {};
+      window.google.ima = {
+        AdDisplayContainer: function(){ return { initialize:function(){}, destroy:function(){} }; },
+        AdsLoader: function(){ return { addEventListener:function(){}, requestAds:function(){}, destroy:function(){} }; },
+        AdsRequest: function(){ return {}; },
+        AdsManagerLoadedEvent: { Type: { ADS_MANAGER_LOADED:'adsManagerLoaded' } },
+        AdErrorEvent: { Type: { AD_ERROR:'adError' } },
+        AdEvent: { Type: { ALL_ADS_COMPLETED:'allAdsCompleted', CONTENT_PAUSE_REQUESTED:'contentPauseRequested', CONTENT_RESUME_REQUESTED:'contentResumeRequested' } },
+        ImaSdkSettings: { VpaidMode: { DISABLED:0 } },
+        settings: { setVpaidMode:function(){}, setLocale:function(){} }
+      };
+    </script>
+    <script type="text/javascript" src="assets/box2dweb/nape.min.js"></script>
+    <script type="text/javascript" src="assets/box2dweb/nape-debug-draw.min.js"></script>
+    <script type="text/javascript" src="assets/box2dweb/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/box2dweb/easeljs-0.8.2.combined.js"></script>
+    <script type="text/javascript" src="assets/box2dweb/bluebird.min.js"></script>
+    <script type="text/javascript" src="assets/js/motox3m4.min.js"></script>
+  </body>
+</html>

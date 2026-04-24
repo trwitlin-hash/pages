@@ -1,0 +1,19 @@
+{
+  "files": [
+    "2/Build/grow-v2-safe.swf",
+    "2/index.html",
+    "3/Build/grow_v3_remake.swf",
+    "3/index.html",
+    "cube/Build/grow_cube.swf",
+    "cube/index.html",
+    "index.html",
+    "island/Build/growisland.swf",
+    "island/index.html",
+    "park/Build/grow_park.swf",
+    "park/index.html",
+    "rpg/Build/grow_rpg.swf",
+    "rpg/index.html",
+    "tower/Build/grow_tower_v0-safe.swf",
+    "tower/index.html"
+  ]
+}
