@@ -5,10 +5,11 @@
   <style>
     html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#000}
     ruffle-player{width:100%;height:100%;display:block}
-    #debug{position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,0.85);color:#0f0;font:12px/1.5 monospace;padding:8px 10px;z-index:9999;max-height:50vh;overflow-y:auto;pointer-events:none}
+    #debug{position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,0.88);color:#0f0;font:12px/1.6 monospace;padding:8px 10px;z-index:9999;max-height:60vh;overflow-y:auto;pointer-events:none}
     #debug b{color:#ff0}
     #debug .err{color:#f55}
     #debug .ok{color:#5f5}
+    #debug .warn{color:#fa0}
   </style>
 </head>
 <body>
@@ -24,64 +25,76 @@
       dbg.appendChild(line);
     }
 
-    // Show script URL being loaded
-    log('Page: ' + window.location.href);
-    log('Ruffle script: ' + (document.currentScript ? document.currentScript.src : 'unknown'));
-
-    // Catch JS errors
     window.onerror = function(msg, src, line, col, err) {
-      log('❌ JS Error: ' + msg + '<br>  at ' + src + ':' + line, 'err');
-      return false;
+      log('❌ JS Error: ' + msg + ' @ ' + src + ':' + line, 'err');
     };
-
     window.addEventListener('unhandledrejection', function(e) {
-      log('❌ Unhandled Promise: ' + (e.reason || e), 'err');
+      log('❌ Promise rejection: ' + (e.reason || e), 'err');
     });
   </script>
 
-  <script src="../../js/ruffle/ruffle.js" onerror="log('❌ ruffle.js FAILED to load — check path: ../../js/ruffle/ruffle.js', 'err')"></script>
+  <script src="../../js/ruffle/ruffle.js" onerror="log('❌ ruffle.js failed to load', 'err')"></script>
 
   <script>
-    // Check if Ruffle loaded
-    setTimeout(function() {
-      if (typeof window.RufflePlayer === 'undefined') {
-        log('❌ window.RufflePlayer is UNDEFINED — ruffle.js did not define it', 'err');
-      } else {
-        log('✅ window.RufflePlayer exists', 'ok');
-      }
+    var player = document.getElementById('rufflePlayer');
 
-      // Check SWF path
-      var swfUrl = new URL('Build/impossiblequiz.swf', window.location.href).href;
-      log('SWF URL: ' + swfUrl);
-
-      // Try fetching the SWF to see if it's accessible
-      fetch(swfUrl, {method:'HEAD'}).then(function(r){
-        log((r.ok ? '✅' : '❌') + ' SWF HEAD: HTTP ' + r.status + ' ' + r.statusText + (r.ok ? '' : ' — FILE NOT FOUND'), r.ok ? 'ok' : 'err');
-      }).catch(function(e){
-        log('❌ SWF fetch error: ' + e, 'err');
+    // Ruffle internal log/error events
+    if (player) {
+      player.addEventListener('ruffle:log', function(e) {
+        log('ℹ️ Ruffle: ' + (e.detail && e.detail.message), 'warn');
       });
+      player.addEventListener('ruffle:error', function(e) {
+        log('❌ Ruffle error: ' + (e.detail && e.detail.message), 'err');
+      });
+    }
 
-      // Check ruffle wasm/chunk URLs by looking at loaded scripts
-      var scripts = Array.from(document.scripts).map(function(s){ return s.src; }).filter(Boolean);
-      log('Scripts loaded: ' + scripts.length);
-      scripts.forEach(function(s){ log('  • ' + s.split('/').slice(-1)[0]); });
-
-      // Check wasm MIME via a known ruffle wasm file
-      var ruffleBase = '../../js/ruffle/';
-      var absoluteBase = new URL(ruffleBase, window.location.href).href;
-      log('Ruffle base URL: ' + absoluteBase);
-    }, 2000);
-
-    // Monitor ruffle player events
-    document.addEventListener('DOMContentLoaded', function() {
-      var player = document.getElementById('rufflePlayer');
-      if (!player) { log('❌ ruffle-player element missing', 'err'); return; }
-      log('✅ ruffle-player element found');
-
-      player.addEventListener('loadedmetadata', function() { log('✅ Ruffle: loadedmetadata', 'ok'); });
-      player.addEventListener('load', function() { log('✅ Ruffle: load event', 'ok'); });
-      player.addEventListener('error', function(e) { log('❌ Ruffle player error: ' + JSON.stringify(e.detail || e.message || 'unknown'), 'err'); });
+    // Check wasm MIME type — this is the most common silent failure
+    var wasmFiles = [
+      '/js/ruffle/f43c699a5c29c60ca554.wasm',
+      '/js/ruffle/d46943bc2c5d628dd63d.wasm'
+    ];
+    wasmFiles.forEach(function(wf) {
+      fetch(wf, {method:'HEAD'}).then(function(r) {
+        var ct = r.headers.get('content-type') || '(no content-type)';
+        var ok = ct.includes('wasm');
+        log((ok ? '✅' : '❌') + ' WASM ' + wf.split('/').pop() + ' → HTTP ' + r.status + ' | Content-Type: ' + ct, ok ? 'ok' : 'err');
+        if (!ok) log('  ⚠️ wasm must be application/wasm — netlify.toml header may not be applying', 'err');
+      }).catch(function(e) { log('❌ WASM fetch error: ' + e, 'err'); });
     });
+
+    // Check core ruffle JS chunks
+    var coreChunks = [
+      '/js/ruffle/core.ruffle.bbf4e6b46a304d18b873.js',
+      '/js/ruffle/core.ruffle.6a2fe576a9d3122ce698.js'
+    ];
+    coreChunks.forEach(function(c) {
+      fetch(c, {method:'HEAD'}).then(function(r) {
+        log((r.ok ? '✅' : '❌') + ' Chunk ' + c.split('/').pop() + ' → HTTP ' + r.status, r.ok ? 'ok' : 'err');
+      }).catch(function(e) { log('❌ Chunk error: ' + e, 'err'); });
+    });
+
+    // Try loading wasm as WebAssembly directly to see the real browser error
+    fetch('/js/ruffle/f43c699a5c29c60ca554.wasm')
+      .then(function(r) { return r.arrayBuffer(); })
+      .then(function(buf) {
+        return WebAssembly.compile(buf);
+      })
+      .then(function() { log('✅ WebAssembly.compile succeeded — wasm is valid', 'ok'); })
+      .catch(function(e) { log('❌ WebAssembly.compile failed: ' + e, 'err'); });
+
+    // Delayed status check
+    setTimeout(function() {
+      log('--- 3s check ---', 'warn');
+      if (typeof window.RufflePlayer === 'undefined') {
+        log('❌ RufflePlayer still undefined', 'err');
+      } else {
+        log('✅ RufflePlayer defined', 'ok');
+        // Check player readyState
+        var p = document.getElementById('rufflePlayer');
+        log('Player readyState: ' + (p && p.readyState));
+        log('Player loadedConfig: ' + JSON.stringify(p && p.config));
+      }
+    }, 3000);
   </script>
 </body>
 </html>
