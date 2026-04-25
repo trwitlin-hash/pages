@@ -16,3 +16,8 @@
   for = "/**/*.unityweb"
   [headers.values]
     Content-Type = "application/octet-stream"
+
+[[headers]]
+  for = "/**/*.br"
+  [headers.values]
+    Content-Type = "application/octet-stream"
