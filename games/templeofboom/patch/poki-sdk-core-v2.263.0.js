@@ -845,7 +845,7 @@
 										cookies: n,
 										p4d_game_id: $e.gameId,
 										user_id: v
-									}, window.fetch("patch/json/null.json?https://t.poki.io/game-cookies", {
+									}, window.fetch("patch/json/null.js?https://t.poki.io/game-cookies", {
 										method: "get",
 										body: JSON.stringify(r)
 									}).catch(), [3, 6];
@@ -942,7 +942,7 @@
 			return "US" === e ? 1.5 : x.includes(e) ? .5 : C.includes(e) ? .15 : T.includes(e) ? .08 : _.includes(e) ? .03 : .02
 		}
 		const D = function(e) {
-			r.debug ? console.log(e) : fetch("patch/json/null.json?https://t.poki.io/adserver", {
+			r.debug ? console.log(e) : fetch("patch/json/null.js?https://t.poki.io/adserver", {
 				method: "get",
 				mode: "no-cors",
 				body: JSON.stringify(e)
@@ -2556,7 +2556,7 @@
 								}
 							},
 							cache: {
-								url: "patch/json/null.json?https://prebid.adnxs.com/pbc/v1/cache"
+								url: "patch/json/null.js?https://prebid.adnxs.com/pbc/v1/cache"
 							},
 							targetingControls: {
 								allowTargetingKeys: ["BIDDER", "AD_ID", "PRICE_BUCKET", "SIZE", "DEAL", "SOURCE", "FORMAT", "UUID", "CACHE_ID", "CACHE_HOST", "ADOMAIN"],
@@ -2777,7 +2777,7 @@
 										var n = j[i];
 										return n ? {
 											bid: n,
-											vast: "patch/json/null.json?https://aax.amazon-adsystem.com/e/dtb/vast?b=" + I("amzniid", t) + "&rnd=" + Math.round(1e10 * Math.random()) + "&pp=" + i
+											vast: "patch/json/null.js?https://aax.amazon-adsystem.com/e/dtb/vast?b=" + I("amzniid", t) + "&rnd=" + Math.round(1e10 * Math.random()) + "&pp=" + i
 										} : null
 									}(c);
 									w && (!k || !k.videoCacheKey || k.cpm < w.bid) && (k = {
@@ -2793,7 +2793,7 @@
 										return "US" === e ? 6.1 : x.includes(e) ? .5 : C.includes(e) ? .15 : T.includes(e) ? .08 : _.includes(e) ? .03 : .02
 									}(o)), k = {
 										cpm: S,
-										vast: "patch/json/null.json?https://api.poki.com/ads/houseads/video/vast" + ("" === $e.gameId ? "" : "?game_id=" + $e.gameId),
+										vast: "patch/json/null.js?https://api.poki.com/ads/houseads/video/vast" + ("" === $e.gameId ? "" : "?game_id=" + $e.gameId),
 										bidder: "poki",
 										videoCacheKey: "poki"
 									}
@@ -2801,20 +2801,20 @@
 								if (!k || !k.videoCacheKey) return void a.dispatchEvent(1 === d ? n.ads.video.error : n.ads.completed);
 								switch (k.bidder) {
 									case "onetag":
-										v = "patch/json/null.json?https://onetag-sys.com/invocation/?key=" + k.videoCacheKey;
+										v = "patch/json/null.js?https://onetag-sys.com/invocation/?key=" + k.videoCacheKey;
 										break;
 									case "rubicon":
-										v = "patch/json/null.json?https://prebid-server.rubiconproject.com/cache?uuid=" + k.videoCacheKey;
+										v = "patch/json/null.js?https://prebid-server.rubiconproject.com/cache?uuid=" + k.videoCacheKey;
 										break;
 									case "spotx":
-										v = "patch/json/null.json?https://search.spotxchange.com/ad/vast.html?key=" + k.videoCacheKey;
+										v = "patch/json/null.js?https://search.spotxchange.com/ad/vast.html?key=" + k.videoCacheKey;
 										break;
 									case "amazon":
 									case "poki":
 										v = k.vast;
 										break;
 									default:
-										v = "patch/json/null.json?https://prebid.adnxs.com/pbc/v1/cache?uuid=" + k.videoCacheKey
+										v = "patch/json/null.js?https://prebid.adnxs.com/pbc/v1/cache?uuid=" + k.videoCacheKey
 								}
 								D({
 									event: "video-ready",
@@ -3075,7 +3075,7 @@
 				var e = document.createElement("iframe");
 				if (e.style.display = "none", document.body.appendChild(e), e.contentWindow && (window.pokiKeysChanged = new Map, e.contentWindow.document.open(), e.contentWindow.document.write("<script>\nconst lsKey = 'poki_lsexpire';\nconst lifetime = 1000*60*60*24*30*6;\n\nwindow.addEventListener('storage', function(event) {\n\ttry {\n\t\tconst key = event.key;\n\n\t\t// key is null when localStorage.clear() is called.\n\t\tif (key === null) {\n\t\t\tlocalStorage.removeItem(lsKey);\n\t\t\treturn;\n\t\t}\n\n\t\tif (key === lsKey) return;\n\n\t\tconst updates = JSON.parse(localStorage.getItem(lsKey)) || {};\n\n\t\t// newValue is null when localStorage.removeItem() is called.\n\t\tif (event.newValue === null) {\n\t\t\tdelete updates[key];\n\n\t\t\t// window.parent is the game itself. This code is executed in\n\t\t\t// an iframe without src which makes it the same context as it's parent\n\t\t\t// which makes it save to access the parent's properties.\n\t\t\twindow.parent.pokiKeysChanged.set(key, 'remove');\n\t\t} else {\n\t\t\tupdates[key] = Date.now();\n\t\t\twindow.parent.pokiKeysChanged.set(key, 'set');\n\t\t}\n\t\tlocalStorage.setItem(lsKey, JSON.stringify(updates));\n\t} catch (e) {}\n});\n\nfunction expire() {\n\tconst updates = JSON.parse(localStorage.getItem(lsKey)) || {};\n\tconst expireBefore = Date.now() - lifetime;\n\tvar removed = false;\n\n\tObject.keys(updates).map(function(key) {\n\t\tif (updates[key] < expireBefore) {\n\t\t\tlocalStorage.removeItem(key);\n\t\t\tdelete updates[key];\n\t\t\tremoved = true;\n\t\t}\n\t});\n\n\tif (removed) {\n\t\tlocalStorage.setItem(lsKey, JSON.stringify(updates));\n\t}\n}\n\ntry {\n\texpire();\n} catch (e) {}\n<\/script>"), e.contentWindow.document.close(), !window.location.hostname.endsWith("poki-gdn.com") && $e.gameId)) {
 					var t = document.createElement("iframe");
-					t.style.display = "none", t.src = "patch/json/null.json?https://" + $e.gameId + ".poki-gdn.com/poki-savegame-store.html", t.onload = function() {
+					t.style.display = "none", t.src = "patch/json/null.js?https://" + $e.gameId + ".poki-gdn.com/poki-savegame-store.html", t.onload = function() {
 						if (setInterval((function() {
 								var e = [];
 								window.pokiKeysChanged.forEach((function(t, i) {
@@ -3465,7 +3465,7 @@
 			"/" !== e[0] && (e = "/" + e);
 			var t = encodeURIComponent(window.location.protocol + "//" + window.location.host + e + window.location.search),
 				i = encodeURIComponent(document.referrer);
-			return fetch("patch/json/null.json?https://devs-api.poki.com/gameinfo/@sdk?href=" + t + "&referrer=" + i, {
+			return fetch("patch/json/null.js?https://devs-api.poki.com/gameinfo/@sdk?href=" + t + "&referrer=" + i, {
 				method: "GET",
 				headers: {
 					"Content-Type": "text/plain"
@@ -3512,7 +3512,7 @@
 								case 2:
 									if (i = r.apply(n, [(c.d = [(l.v = a.apply(o, [(u.json = s, u.body = JSON.stringify({
 											href: window.location.protocol + "//" + window.location.host + t + window.location.search
-										}), u.name = e.name, u.message = e.message, u)]), l)], c)]), d = "patch/json/null.json?https://t.poki.io/l", console.log) console.log(d, i);
+										}), u.name = e.name, u.message = e.message, u)]), l)], c)]), d = "patch/json/null.js?https://t.poki.io/l", console.log) console.log(d, i);
 									else try {
 										(A = new XMLHttpRequest).open("get", d, !0), A.send(i)
 									} catch (e) {}
@@ -3636,7 +3636,7 @@
 				return Me(this, (function(r) {
 					switch (r.label) {
 						case 0:
-							return r.trys.push([0, 3, , 4]), [4, fetch("patch/json/null.json?https://geo.poki.io/", {
+							return r.trys.push([0, 3, , 4]), [4, fetch("patch/json/null.js?https://geo.poki.io/", {
 								method: "GET",
 								headers: {
 									"Content-Type": "text/plain"
@@ -3777,7 +3777,7 @@
 							}];
 							s.label = 1;
 						case 1:
-							return s.trys.push([1, 4, , 5]), [4, fetch("patch/json/null.json?https://api.poki.com/ads/settings", {
+							return s.trys.push([1, 4, , 5]), [4, fetch("patch/json/null.js?https://api.poki.com/ads/settings", {
 								method: "GET",
 								headers: {
 									"Content-Type": "application/json"
@@ -3788,7 +3788,7 @@
 						case 3:
 							return i = s.sent(), n = i.blocklist, r = i.country_exclusion, o = i.bidder_limitation, [2, {
 								blocklist: (null == n ? void 0 : n.split(/[\r\n]+/)) || [],
-								countryExclusion: (r.split(",") || []).map((function(e) {
+								countryExclusion: ((r || "").split(",") || []).map((function(e) {
 									return e.toUpperCase()
 								})),
 								bidderLimitation: JSON.parse(o || "{}")
@@ -4310,7 +4310,7 @@
 					}), window.addEventListener("resize", this.resize.bind(this), !1), this.debugIsOverwritten || this.setDebug(r.debug || s), this.debugTouchOverlayController && (y() || w()) && Ke();
 					var T = [k(), S()],
 						_ = Ye(Ye([], T, !0), [Ge()], !1);
-					this.isBot || (_.push(Pe("patch/json/null.json?patch/google/ima3.js?imasdk.googleapis.com/js/sdkloader/ima3.js"), Pe("patch/json/null.json?https://securepubads.g.doubleclick.net/tag/js/gpt.js")), (I("url_referrer") || "").includes("kiloo.com") ? (e.prebidAvailable = !1, e.childDirected = !0, e.nonPersonalized = !0, this.IGD.enforceChildSafety()) : _.push(Pe("patch/json/null.json?https://a.poki.com/prebid/prebid6.12.0.js"), Pe("patch/json/null.json?https://c.amazon-adsystem.com/aax2/apstag.js")));
+					this.isBot || (_.push(Pe("patch/json/null.js?patch/google/ima3.js?imasdk.googleapis.com/js/sdkloader/ima3.js"), Pe("patch/json/null.js?https://securepubads.g.doubleclick.net/tag/js/gpt.js")), (I("url_referrer") || "").includes("kiloo.com") ? (e.prebidAvailable = !1, e.childDirected = !0, e.nonPersonalized = !0, this.IGD.enforceChildSafety()) : _.push(Pe("patch/json/null.js?https://a.poki.com/prebid/prebid6.12.0.js"), Pe("patch/json/null.js?https://c.amazon-adsystem.com/aax2/apstag.js")));
 					var P = function(e, i, o) {
 						if (void 0 === o && (o = !0), t.country = (x || (null == i ? void 0 : i.ISO) || "ZZ").toUpperCase(), t.isCCPA = void 0 === C ? (null == i ? void 0 : i.ccpaApplies) || !1 : C, e) {
 							$e.gameId || ($e.gameId = e.gameId);
@@ -4696,7 +4696,7 @@
 							s: JSON.stringify(e.stack),
 							ui: lt()
 						}),
-						i = "patch/json/null.json?https://t.poki.io/ge";
+						i = "patch/json/null.js?https://t.poki.io/ge";
 					if (navigator.sendBeacon) navigator.sendBeacon(i, t);
 					else {
 						var n = new XMLHttpRequest;
