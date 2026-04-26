@@ -708,6 +708,7 @@
           const tier    = sessionStorage.getItem('sgUnlockedTier');
           w.sessionStorage.setItem('sgUnlockedSession', keyHash);
           w.sessionStorage.setItem('sgUnlockedTier',    tier);
+          w.sessionStorage.setItem('sgCloakToken',      '1');
           const base = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/');
           html = html.replace('<head>', `<head><base href="${base}">`);
           w.document.open();
