@@ -1,6 +1,7 @@
 /*
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: blob:
 
 /*.wasm
   Content-Type: application/wasm
