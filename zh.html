@@ -332,6 +332,7 @@
   <script src="keys.js?v=3"></script>
   <script src="auth.js?v=3"></script>
   <script>
+    localStorage.setItem('lwts_lang', 'zh');
     let logoClicks = 0, logoTimer = null;
     document.getElementById('logoBtn').addEventListener('click', () => {
       logoClicks++;
@@ -383,22 +384,16 @@
     }
 
     function launchCloaked() {
-      const w = window.open('about:blank', '_blank');
-      if (!w) { window.location.href = 'loading.html'; return; }
-      fetch('loading.html')
-        .then(r => r.text())
-        .then(html => {
-          const keyHash = sessionStorage.getItem('sgUnlockedSession');
-          const tier    = sessionStorage.getItem('sgUnlockedTier');
-          w.sessionStorage.setItem('sgUnlockedSession', keyHash);
-          w.sessionStorage.setItem('sgUnlockedTier',    tier);
-          w.sessionStorage.setItem('sgCloakToken',      '1');
-          const base = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/');
-          html = html.replace('<head>', `<head><base href="${base}">`);
-          w.document.open();
-          w.document.write(html);
-          w.document.close();
-        });
+      const keyHash = sessionStorage.getItem('sgUnlockedSession');
+      const tier    = sessionStorage.getItem('sgUnlockedTier');
+      localStorage.setItem('sgLaunchHash', keyHash);
+      localStorage.setItem('sgLaunchTier', tier);
+      localStorage.setItem('sgLaunchExp',  String(Date.now() + 10000));
+      const w = window.open('loading.html', '_blank');
+      if (!w) {
+        sessionStorage.setItem('sgCloakToken', '1');
+        window.location.href = 'loading.html';
+      }
     }
   </script>
 <script src="music-player.js"></script>

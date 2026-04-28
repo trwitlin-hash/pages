@@ -221,5 +221,12 @@
     <div class="footer-cn">© 2026 老王茶叶店 版权所有 · Family Business Since 1962 · All Rights Reserved</div>
   </footer>
 <script src="music-player.js"></script>
+<script>
+  if (localStorage.getItem("lwts_lang") === "zh") {
+    document.querySelectorAll('a[href="index.html"]').forEach(function(a) {
+      a.href = "zh.html";
+    });
+  }
+</script>
 </body>
 </html>
