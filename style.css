@@ -238,11 +238,10 @@ a:hover { text-decoration: underline; }
 
 .game-card:hover {
   transform: translateY(-5px) scale(1.02);
-  border-color: rgba(var(--cat-glow, 108,99,255), 0.75);
-  box-shadow: 0 12px 40px rgba(var(--cat-glow, 108,99,255), 0.28);
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(108,99,255,0.25);
 }
 
-/* Thumb area — gradient set per card by JS */
 .game-thumb {
   width: 100%;
   aspect-ratio: 16/9;
@@ -251,6 +250,7 @@ a:hover { text-decoration: underline; }
   justify-content: center;
   position: relative;
   overflow: hidden;
+  background: #000;
 }
 
 /* Emoji */

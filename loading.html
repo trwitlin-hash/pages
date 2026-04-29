@@ -568,26 +568,11 @@
         grid.innerHTML = `<div class="no-results">No games found 😔</div>`;
         return;
       }
-      // Category gradient + glow palette
-      const CAT_STYLE = {
-        arcade:   { bg: 'linear-gradient(135deg,#1a0d3d,#3d1a7a)', glow: '130,100,255' },
-        action:   { bg: 'linear-gradient(135deg,#3d0a0a,#8b1a00)', glow: '220,60,50'  },
-        driving:  { bg: 'linear-gradient(135deg,#0a2a18,#105c38)', glow: '50,180,100' },
-        shooting: { bg: 'linear-gradient(135deg,#0d0d1a,#2a0a2a)', glow: '160,80,200' },
-        sports:   { bg: 'linear-gradient(135deg,#061828,#0a4070)', glow: '50,140,220' },
-        puzzle:   { bg: 'linear-gradient(135deg,#2a1a00,#7a5000)', glow: '220,160,40' },
-        strategy: { bg: 'linear-gradient(135deg,#0a1a0a,#1a4a1a)', glow: '80,180,80'  },
-        sandbox:  { bg: 'linear-gradient(135deg,#1a1000,#5c3a00)', glow: '200,130,50' },
-        idle:     { bg: 'linear-gradient(135deg,#1a0a2a,#500a90)', glow: '160,80,220' },
-      };
-
       filtered.forEach(g => {
-        const cs = CAT_STYLE[g.cat] || CAT_STYLE.arcade;
         const card = document.createElement("div");
         card.className = "game-card";
-        card.style.setProperty('--cat-glow', cs.glow);
         card.innerHTML = `
-          <div class="game-thumb" style="background:${cs.bg}">
+          <div class="game-thumb">
             <span class="game-emoji">${g.emoji}</span>
             ${g.tier === 'pro' ? '<span class="pro-badge">⭐ Pro</span>' : ''}
           </div>
