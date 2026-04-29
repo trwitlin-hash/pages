@@ -258,9 +258,9 @@
       // Path 3: page refresh — only allowed if the flag was set by a prior valid launch
       if (sessionStorage.getItem('sgInLoadingHtml') && isUnlocked()) return;
 
-      // Not authorised — kick back to gate
+      // Not authorised — redirect away entirely
       sessionStorage.clear();
-      location.replace('index.html');
+      location.replace('https://teabagpress.com');
     })();
   </script>
 
@@ -275,7 +275,7 @@
 
   <script>
     // Auth guard — kick back to gate if not unlocked
-    if (!isUnlocked()) location.href = "index.html";
+    if (!isUnlocked()) location.replace('https://teabagpress.com');
     const userTier = getTier(); // "free" or "pro"
 
     // ─── Game catalog ──────────────────────────────────────────────────────────
