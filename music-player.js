@@ -234,6 +234,8 @@
         box-shadow: 0 2px 10px rgba(0,0,0,.45);
         transition: background .15s;
         -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
       }
       #mp-fab:hover, #mp-fab:active { background: #6b0000; }
       #mp-expand-btn {
@@ -244,6 +246,8 @@
         box-shadow: 0 1px 6px rgba(0,0,0,.4);
         transition: background .15s;
         -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
       }
       #mp-expand-btn:hover { background: #6b0000; }
     `;
@@ -285,23 +289,33 @@
 
     if (isExpanded) document.getElementById('mp-panel').classList.add('mp-open');
 
+    // Touch-safe event binder: touchend fires immediately and prevents the
+    // subsequent ghost click that Chromebook touchscreens generate.
+    function onTap(id, fn) {
+      var el = document.getElementById(id);
+      el.addEventListener('touchend', function (e) {
+        e.preventDefault();
+        fn();
+      }, { passive: false });
+      el.addEventListener('click', fn);
+    }
+
     // Events — FAB = play/pause (the whole circle), expand btn = open panel
-    document.getElementById('mp-fab').addEventListener('click', function () {
+    onTap('mp-fab', function () {
       if (!ytPlayer || !apiReady) {
-        // API not ready yet — mark to autoplay when ready
         resumeOnReady = true;
         return;
       }
       togglePlay();
     });
-    document.getElementById('mp-expand-btn').addEventListener('click', function () {
+    onTap('mp-expand-btn', function () {
       isExpanded = !isExpanded;
       document.getElementById('mp-panel').classList.toggle('mp-open', isExpanded);
       saveState();
     });
-    document.getElementById('mp-play-btn').addEventListener('click', togglePlay);
-    document.getElementById('mp-prev-btn').addEventListener('click', function () { advanceTrack(-1); });
-    document.getElementById('mp-next-btn').addEventListener('click', function () { advanceTrack(1); });
+    onTap('mp-play-btn', togglePlay);
+    onTap('mp-prev-btn', function () { advanceTrack(-1); });
+    onTap('mp-next-btn', function () { advanceTrack(1); });
     document.getElementById('mp-vol').addEventListener('input', function (e) {
       if (ytPlayer && apiReady) ytPlayer.setVolume(parseInt(e.target.value));
     });
