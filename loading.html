@@ -664,6 +664,11 @@
       modalTitle.textContent = g.emoji + " " + g.name;
       modal.classList.add("open");
       document.body.style.overflow = "hidden";
+      // Set a short-lived token so guarded game pages know they were launched from here
+      try {
+        localStorage.setItem('sgFrameToken', '1');
+        localStorage.setItem('sgFrameExp', String(Date.now() + 8000));
+      } catch(e) {}
       iframe.src = g.src;
       // Reset report button
       reportBtn.textContent = "🚩 Report";

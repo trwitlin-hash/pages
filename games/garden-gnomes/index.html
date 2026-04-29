@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function(){
+  var t=localStorage.getItem('sgFrameToken'), e=parseInt(localStorage.getItem('sgFrameExp')||0);
+  if(t && Date.now()<e){ localStorage.removeItem('sgFrameToken'); localStorage.removeItem('sgFrameExp'); }
+  else if(!sessionStorage.getItem('sgUnlockedSession')){ location.replace('/index.html'); }
+})();
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Garden Gnomes</title>
@@ -8,8 +15,9 @@
   <link rel="stylesheet" href="css/game.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    #fpdoodle { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    #fpdoodle { display: flex; align-items: flex-start; justify-content: center; }
+    #gamewrapper { transform-origin: top center; }
   </style>
 </head>
 <body>
@@ -22,5 +30,17 @@
   </div>
   <script src="js/createjs.js"></script>
   <script src="js/game.js"></script>
+  <script>
+    (function () {
+      function fit() {
+        var el = document.getElementById('gamewrapper');
+        if (!el || !el.offsetWidth) { setTimeout(fit, 300); return; }
+        var s = Math.min(1, window.innerWidth / el.offsetWidth, window.innerHeight / el.offsetHeight);
+        el.style.transform = s < 0.99 ? 'scale(' + s.toFixed(4) + ')' : '';
+      }
+      window.addEventListener('load', function () { fit(); setTimeout(fit, 800); setTimeout(fit, 2000); });
+      window.addEventListener('resize', fit);
+    })();
+  </script>
 </body>
 </html>

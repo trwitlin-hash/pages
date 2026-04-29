@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html id="sadoodle">
   <head>
+<script>
+(function(){
+  var t=localStorage.getItem('sgFrameToken'), e=parseInt(localStorage.getItem('sgFrameExp')||0);
+  if(t && Date.now()<e){ localStorage.removeItem('sgFrameToken'); localStorage.removeItem('sgFrameExp'); }
+  else if(!sessionStorage.getItem('sgUnlockedSession')){ location.replace('/index.html'); }
+})();
+</script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=no" />
@@ -12,12 +19,13 @@
         padding: 0px;
         box-sizing: border-box;
       }
-      html,
-      body {
-        height: 100%;
-        width: 100%;
+      html, body {
+        height: 100%; width: 100%;
+        overflow: hidden; background: #000;
+        display: flex; align-items: flex-start; justify-content: center;
       }
       #game {
+        transform-origin: top center;
         outline: none;
         overflow: hidden;
         position: relative;
@@ -39,5 +47,17 @@
       </div>
     </div>
     <script src="js/game.js"></script>
+    <script>
+      (function () {
+        function fit() {
+          var el = document.getElementById('game');
+          if (!el || !el.offsetWidth) { setTimeout(fit, 300); return; }
+          var s = Math.min(1, window.innerWidth / el.offsetWidth, window.innerHeight / el.offsetHeight);
+          el.style.transform = s < 0.99 ? 'scale(' + s.toFixed(4) + ')' : '';
+        }
+        window.addEventListener('load', function () { fit(); setTimeout(fit, 800); setTimeout(fit, 2000); });
+        window.addEventListener('resize', fit);
+      })();
+    </script>
   </body>
 </html>
