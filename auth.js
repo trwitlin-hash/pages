@@ -2,21 +2,12 @@
 // Keys are never stored in plain text — only their hashes are compared.
 // Uses sessionStorage so the key is required again each new browser session.
 //
-// Domain rules:
-//   teabagpress.com  → pro codes only  → sees all games
-//   everywhere else  → free codes only → sees free games only
+// Any valid key works on any domain.
+// tier "free"  → sees free games only
+// tier "pro"   → sees all games
 
 const AUTH_KEY  = "sgUnlockedSession";
 const AUTH_TIER = "sgUnlockedTier";
-
-function isProDomain() {
-  const h = window.location.hostname;
-  return h === "teabagpress.com" || h === "www.teabagpress.com";
-}
-
-function requiredTier() {
-  return isProDomain() ? "pro" : "free";
-}
 
 async function hashKey(raw) {
   const encoded = new TextEncoder().encode(raw.trim().toUpperCase());
@@ -30,14 +21,12 @@ function isUnlocked() {
   const saved = sessionStorage.getItem(AUTH_KEY);
   if (!saved) return false;
   if (!(saved in KEYS)) return false;
-  const { tier, expiry } = KEYS[saved];
+  const { expiry } = KEYS[saved];
   if (expiry !== null && Date.now() > expiry) {
     sessionStorage.removeItem(AUTH_KEY);
     sessionStorage.removeItem(AUTH_TIER);
     return false;
   }
-  // Enforce domain/tier match
-  if (tier !== requiredTier()) return false;
   return true;
 }
 
@@ -50,8 +39,6 @@ async function tryUnlock(inputKey) {
   if (!(hash in KEYS)) return false;
   const { tier, expiry } = KEYS[hash];
   if (expiry !== null && Date.now() > expiry) return false;
-  // Reject keys that don't match this domain
-  if (tier !== requiredTier()) return false;
   sessionStorage.setItem(AUTH_KEY, hash);
   sessionStorage.setItem(AUTH_TIER, tier);
   return true;
